@@ -7,7 +7,7 @@ class Games
 
     public function __construct()
     {
-        $query=" SELECT `g_ID`, name, pic FROM Games";
+        $query=" SELECT g_ID, name, pic FROM Games";
         $dbvez= new DBVezerlo();
         $this->games=$dbvez->executeSelectQuery($query);
         $dbvez->closeDB();
@@ -27,5 +27,16 @@ class Games
          $dbvez->closeDB();
          return $this->games;
     }
-    
+
+    public function  getGamesByType($TypeName)
+    {
+        $query=" Select g_ID, name, pic FROM GAMES
+         inner join type on Games.type_ID=type.t_id
+          where type.t_name= '" .$TypeName. "'";
+        $dbvez=new DBVezerlo();
+        $this->games=$dbvez->executeSelectQuery($query);
+        $dbvez->closeDB();
+        return $this->games;
+    }
+
 }
