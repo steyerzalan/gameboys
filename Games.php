@@ -30,9 +30,9 @@ class Games
 
     public function  getGamesByType($TypeName)
     {
-        $query=" Select g_ID, name, pic FROM GAMES
-         inner join type on Games.type_ID=type.t_id
-          where type.t_name= '" .$TypeName. "'";
+        $query="Select g_ID, name, pic FROM GAMES
+        inner join type on games.type_ID=type.t_id
+        where type.t_name='" .$TypeName. "'";
         $dbvez=new DBVezerlo();
         $this->games=$dbvez->executeSelectQuery($query);
         $dbvez->closeDB();
